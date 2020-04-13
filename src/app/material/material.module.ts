@@ -12,6 +12,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 
@@ -29,7 +30,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatRadioModule,
     MatTableModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule
   ],
   exports: [
     MatButtonModule,
@@ -42,7 +44,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatRadioModule,
     MatTableModule,
     MatGridListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule
   ]
 })
 export class MaterialModule { }
