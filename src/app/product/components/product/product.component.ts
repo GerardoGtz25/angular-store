@@ -20,7 +20,6 @@ export class ProductComponent implements OnInit {
   }
 
   addCart() {
-    console.log('Añadir al carrito');
     this.cartService.addCart(this.product);
     // this.productClicked.emit(this.product);
   }

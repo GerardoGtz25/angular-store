@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 
@@ -31,7 +32,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatGridListModule,
     MatMenuModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule
   ],
   exports: [
     MatButtonModule,
@@ -45,7 +47,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatTableModule,
     MatGridListModule,
     MatMenuModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule
   ]
 })
 export class MaterialModule { }

@@ -15,6 +15,7 @@ export class CartService {
 
   constructor() { }
 
+  // TODO: Hacer una manera para que persista datos despues de recargar
   addCart(product: ProductI) {
     this.products = [...this.products, product];
     this.cart.next(this.products);

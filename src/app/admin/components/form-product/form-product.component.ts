@@ -40,7 +40,6 @@ export class FormProductComponent implements OnInit {
       const product = this.form.value;
       this.productsService.createProduct(product)
         .subscribe(newProduct => {
-          console.log(newProduct);
           this.router.navigate(['./admin/products']);
         });
     }
