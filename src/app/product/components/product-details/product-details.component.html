@@ -1,4 +1,4 @@
-<div *ngIf="product">
+<div *ngIf="(product$ | async) as product">
   <div>
     <img [src]="product.image" alt="" style="max-width: 100%;">
   </div>
@@ -11,4 +11,5 @@
   <button (click)="createProduct()">Crear</button>
   <button (click)="updateProduct()">Actualizar</button>
   <button (click)="deleteProduct(product.id)">Delete</button>
+  <button (click)="getRandomUsers()">Get Random</button>
 </div>
