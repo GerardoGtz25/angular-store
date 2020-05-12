@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ProductI } from '../../../models/product.model';
 
 import { environment } from '../../../../environments/environment';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 
 interface User {
@@ -23,29 +23,50 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   public getAllProducts() {
-    return this.http.get<ProductI[]>(`${environment.url_api}/products`);
+    return this.http.get<ProductI[]>(`${environment.url_api}/products`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   public getProduct(id: string) {
-    return this.http.get<ProductI>(`${environment.url_api}/products/${id}`);
+    return this.http.get<ProductI>(`${environment.url_api}/products/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   public createProduct(product: ProductI) {
-    return this.http.post(`${environment.url_api}/products`, product);
+    return this.http.post(`${environment.url_api}/products`, product)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   public updateProduct(id: string, changes: Partial<ProductI>) {
-    return this.http.put(`${environment.url_api}/products/${id}`, changes);
+    return this.http.put(`${environment.url_api}/products/${id}`, changes)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   public deleteProduct(id: string) {
-    return this.http.delete(`${environment.url_api}/products/${id}`);
+    return this.http.delete(`${environment.url_api}/products/${id}`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getRandomUser(): Observable<User[]> {
-    return this.http.get('https://randomuser.me/api/?results=2')
+  public getRandomUser(): Observable<User[]> {
+    return this.http.get('https://randomasduser.me/api/?results=2')
     .pipe(
+      catchError(this.handleError),
       map((response: any) => response.results as User[])
     );
+  }
+
+  private handleError(error: HttpErrorResponse) {
+    console.log(error);
+    return throwError('ups algo salio mal');
   }
 }
