@@ -4,7 +4,7 @@ import { ProductI } from '../../../models/product.model';
 
 import { environment } from '../../../../environments/environment';
 import { Observable, throwError } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 
 
 interface User {
@@ -60,9 +60,14 @@ export class ProductsService {
   public getRandomUser(): Observable<User[]> {
     return this.http.get('https://randomasduser.me/api/?results=2')
     .pipe(
+      retry(3),
       catchError(this.handleError),
       map((response: any) => response.results as User[])
     );
+  }
+
+  public getFile() {
+    return this.http.get('assets/files/test.txt', {responseType: 'text'});
   }
 
   private handleError(error: HttpErrorResponse) {
